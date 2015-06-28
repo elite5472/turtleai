@@ -1,17 +1,17 @@
 Direction = {
-	north = 0,
-	east = 1,
-	south = 2,
-	west = 3,
+	north = 0;
+	east = 1;
+	south = 2;
+	west = 3;
 	
-	v = 0,
+	v = 0;
 	
 	new = function(self, o)
 		o = o or {}
 		setmetatable(o, self)
 		self.__index = self
 		return o
-	end,
+	end;
 	
 	parse = function(self, string)
 		if string == "north" then
@@ -22,19 +22,19 @@ Direction = {
 			return self:new({v = 2})
 		elseif string == "west" then
 			return self:new({v = 3})
-	end,
+	end;
 	
 	left = function(self)
 		x = self.v - 1
 		if x == -1 then x = 3 end
 		return x
-	end,
+	end;
 	
 	right = function(self)
 		x = self.v + 1
 		if x == 4 then x = 0 end
 		return x
-	end,
+	end;
 	
 	opposite = function(self)
 		return right(right(self.v));	
