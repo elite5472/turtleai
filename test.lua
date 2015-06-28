@@ -21,7 +21,7 @@ Direction = {
 	v = 0,
 	
 	new = function(self, o)
-		o = o or {}   -- create object if user does not provide one
+		o = o or {}
 		setmetatable(o, self)
 		self.__index = self
 		return o
@@ -51,7 +51,7 @@ Position = {
 	d = Direction.new({v = Direction.north})
 	
 	new = function(self, o)
-		o = o or {}   -- create object if user does not provide one
+		o = o or {}
 		setmetatable(o, self)
 		self.__index = self
 		return o
