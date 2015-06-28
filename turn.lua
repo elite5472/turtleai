@@ -42,7 +42,6 @@ Direction = {
 }
 
 function rotate(from, to)
-{
 	if to.v == from:left() then
 		turtle.turnLeft()
 	elseif to.v == from:right() then
@@ -51,8 +50,7 @@ function rotate(from, to)
 		turtle.turnRight()
 		turtle.turnRight()
 	end
-	
-}
+end
 
 local tArgs = {...}
 
