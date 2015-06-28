@@ -22,7 +22,7 @@ Direction = {
 			return self:new({v = 2})
 		elseif string == "west" then
 			return self:new({v = 3})
-	end
+	end,
 	
 	left = function(self)
 		x = self.v - 1
