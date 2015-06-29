@@ -1,4 +1,1 @@
-To download into a turtle bot:
-
->pastebin get wPtGKMam git
->git elite5472 turtleai /
+Run make.rb to compile lua apps into one file, bins.yml will contain the most recent pastebins of each app.
