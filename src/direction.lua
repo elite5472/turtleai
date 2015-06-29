@@ -1,4 +1,5 @@
 require "class"
+require "vector"
 
 Direction = Class:new({
 	north = 0;
@@ -35,6 +36,14 @@ Direction = Class:new({
 	opposite = function(self)
 		return right(right(self.v))
 	end;
+	
+	vector = functon(self)
+		if self.v == 0 then return Vector:new({x = 0, y = 1})
+		else if self.v == 1 then return Vector:new({x = 1, y = 0})
+		else if self.v == 2 then return Vector:new({x = 0, y = -1})
+		else if self.v == 3 then return Vector:new({x = -1, y = 0})
+		end
+	end
 	
 	to_string = function(self)
 		if self.v == 0 then
