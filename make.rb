@@ -14,7 +14,7 @@ def combine(file, path, ignore = [])
 	end
 	
 	out = out + "\n" + code 
-	return out
+	return out.gsub(/^\s*$\n/, '')
 end
 
 File.write("bins.yml", "") if !File.exists? "bins.yml"
