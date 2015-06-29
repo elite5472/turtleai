@@ -1,1 +1,0 @@
-Run make.rb to compile lua apps into one file, bins.yml will contain the most recent pastebins of each app.
