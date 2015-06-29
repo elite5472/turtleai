@@ -1,4 +1,5 @@
 require 'yaml'
+require 'fileutils'
 
 def combine(file, path, ignore = [])
 	dependencies = File.open(file).read().scan(/require\s+"(.+)"\s*;?\s*/)
@@ -17,6 +18,7 @@ def combine(file, path, ignore = [])
 	return out.gsub(/^\s*$\n/, '')
 end
 
+FileUtils.mkdir_p "bin" if !File.directory? "bin"
 File.write("bins.yml", "") if !File.exists? "bins.yml"
 
 bins = YAML.load_file('bins.yml')
