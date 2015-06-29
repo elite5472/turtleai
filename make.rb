@@ -19,7 +19,7 @@ def combine(file, path, ignore = [])
 end
 
 FileUtils.mkdir_p "bin" if !File.directory? "bin"
-File.write("bins.yml", "About: these are various turtle scripts for ComputerCraft. Use make.rb to create and upload programs automatically.") if !File.exists? "bins.yml"
+File.write("bins.yml", "") if !File.exists? "bins.yml"
 
 bins = YAML.load_file('bins.yml')
 
@@ -41,4 +41,18 @@ Dir["app/*.lua"].each do |f|
 end
 
 File.write('bins.yml', bins.to_yaml)
-File.write('README.md', bins.to_yaml)
+
+readme = "
+Turtle AI
+=========
+
+Turtle AI is a project to develop turtles that leverage the BDI (Beliefs, Desires, Intentions) planning model to aid the player with numerous tasks.
+
+The project uses make.rb to dynamically prepare lua scripts for use within ComputerCraft. The pastebin commands bellow are dynamically updated.
+
+```yaml
+#{bins.to_yaml}
+```
+"
+
+File.write('README.md', readme)
