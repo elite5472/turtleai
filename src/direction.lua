@@ -1,17 +1,12 @@
-Direction = {
+require "class"
+
+Direction = Class:new({
 	north = 0;
 	east = 1;
 	south = 2;
 	west = 3;
 	
 	v = 0;
-	
-	new = function(self, o)
-		o = o or {}
-		setmetatable(o, self)
-		self.__index = self
-		return o
-	end;
 	
 	parse = function(self, string)
 		if string == "north" then
@@ -22,6 +17,7 @@ Direction = {
 			return self:new({v = 2})
 		elseif string == "west" then
 			return self:new({v = 3})
+		end
 	end;
 	
 	left = function(self)
@@ -37,24 +33,18 @@ Direction = {
 	end;
 	
 	opposite = function(self)
-		return right(right(self.v));	
-	end
-}
-
-function rotate(from, to)
-	if to.v == from:left() then
-		turtle.turnLeft()
-	elseif to.v == from:right() then
-		turtle.turnRight()
-	elseif to.v == from:opposite() then
-		turtle.turnRight()
-		turtle.turnRight()
-	end
-end
-
-local tArgs = {...}
-
-a = Direction:parse(tArgs[1])
-b = Direction:parse(tArgs[2])
-
-rotate(a, b)
+		return right(right(self.v))
+	end;
+	
+	to_string = function(self)
+		if self.v == 0 then
+			return "north"
+		elseif self.v == 1 then
+			return "east"
+		elseif self.v == 2 then
+			return "south"
+		elseif self.v == 3 then
+			return "west"
+		end
+	end;
+})
