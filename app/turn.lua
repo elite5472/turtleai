@@ -1,4 +1,4 @@
-require "Direction"
+require "direction"
 
 function rotate(from, to)
 	if to.v == from:left() then
