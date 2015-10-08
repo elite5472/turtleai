@@ -7,35 +7,27 @@ Agent = Class:new({
 	pos = Position:new();
 	
 	move_ahead = function(self)
-		r = turtle.forward()
-		if r then
-			self.pos.loc = self.pos.loc + self.pos.dir:vector()
-		end
-		return r
+		return turtle.forward()
 	end;
 	
 	move_back = function(self)
-		r = turtle.back()
-		if r then
-			self.pos.loc = self.pos.loc + self.pos.dir:opposite():vector()
-		end
-		return r
+		return turtle.back()
 	end;
 	
 	move_up = function(self)
-		r = turtle.up()
-		if r then
-			self.pos.loc = self.pos.loc + Vector:new({z = 1})
-		end
-		return r
+		return = turtle.up()
 	end;
 	
 	move_down = function(self)
-		r = turtle.down()
-		if r then
-			self.pos.loc = self.pos.loc + Vector:new({z = -1})
-		end
-		return r
+		return turtle.down()
+	end;
+	
+	turn_left = function(self)
+		return turtle.turnLeft()
+	end;
+	
+	turn_right = function(self)
+		return turtle.turnRight()
 	end;
 	
 	dig_ahead = function(self)
@@ -76,5 +68,9 @@ Agent = Class:new({
 	
 	select_item = function(self, inventory_id)
 		return turtle.select()
+	end;
+	
+	update_knowledge = function(self)
+		--detect_ahead, detect_up, detect_down
 	end;
 })

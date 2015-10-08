@@ -1,0 +1,5 @@
+sum = 0
+		for	i, v in ipairs(acoords) do
+			sum = sum + math.pow(acoords[i] - bcoords[i], 2)
+		end
+		return math.sqrt(sum)

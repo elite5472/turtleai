@@ -10,6 +10,8 @@ The project uses make.rb to dynamically prepare lua scripts for use within Compu
 
 ```yaml
 ---
-turn.lua: pastebin get qPegzxRw turn
+bditest.lua: pastebin get Tn1PFZNy bditest
+turn.lua: pastebin get TVpBKtsW turn
+test.lua: pastebin get urGAJndn test
 
 ```

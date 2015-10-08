@@ -6,7 +6,7 @@ Vector = Class:new({
 	z = 0;
 })
 
-function Vector:clone()
+function Vector:copy()
 	return self:new({x = self.x, y = self.y, z = self.z})
 end
 
