@@ -15,7 +15,7 @@ Agent = Class:new({
 	end;
 	
 	move_up = function(self)
-		return = turtle.up()
+		return turtle.up()
 	end;
 	
 	move_down = function(self)
