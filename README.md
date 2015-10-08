@@ -12,6 +12,6 @@ The project uses make.rb to dynamically prepare lua scripts for use within Compu
 ---
 bditest.lua: pastebin get Tn1PFZNy bditest
 turn.lua: pastebin get u1iLnuwv turn
-test.lua: pastebin get rh4yD3sn test
+test.lua: pastebin get Post limit, maximum pastes per 24h reached test
 
 ```
