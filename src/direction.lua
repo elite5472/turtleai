@@ -22,30 +22,30 @@ Direction = Class:new({
 	end;
 	
 	left = function(self)
-		x = self.v - 1
+		local x = self.v - 1
 		if x == -1 then x = 3 end
 		return x
 	end;
 	
 	right = function(self)
-		x = self.v + 1
+		local x = self.v + 1
 		if x == 4 then x = 0 end
 		return x
 	end;
 	
 	opposite = function(self)
-		return right(right(self.v))
+		return self:right(self:right(self.v))
 	end;
 	
-	vector = functon(self)
+	vector = function(self)
 		if self.v == 0 then return Vector:new({x = 0, y = 1})
-		else if self.v == 1 then return Vector:new({x = 1, y = 0})
-		else if self.v == 2 then return Vector:new({x = 0, y = -1})
-		else if self.v == 3 then return Vector:new({x = -1, y = 0})
+		elseif self.v == 1 then return Vector:new({x = 1, y = 0})
+		elseif self.v == 2 then return Vector:new({x = 0, y = -1})
+		elseif self.v == 3 then return Vector:new({x = -1, y = 0})
 		end
-	end
+	end;
 	
-	to_string = function(self)
+	__tostring = function(self)
 		if self.v == 0 then
 			return "north"
 		elseif self.v == 1 then

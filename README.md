@@ -11,7 +11,7 @@ The project uses make.rb to dynamically prepare lua scripts for use within Compu
 ```yaml
 ---
 bditest.lua: pastebin get Tn1PFZNy bditest
-turn.lua: pastebin get TVpBKtsW turn
-test.lua: pastebin get urGAJndn test
+turn.lua: pastebin get u1iLnuwv turn
+test.lua: pastebin get rh4yD3sn test
 
 ```
