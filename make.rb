@@ -60,3 +60,8 @@ The project uses make.rb to dynamically prepare lua scripts for use within Compu
 "
 
 File.write('README.md', readme)
+
+#Now commit
+`git add .`
+`git commit -m "latest"`
+`git push origin master`
