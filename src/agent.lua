@@ -4,9 +4,8 @@ require "vector"
 require "position"
 
 Agent = Class:new({
-	pos = Position:new();
 	
-	move_ahead = function(self)
+	move_forward = function(self)
 		return turtle.forward()
 	end;
 	
@@ -30,7 +29,7 @@ Agent = Class:new({
 		return turtle.turnRight()
 	end;
 	
-	dig_ahead = function(self)
+	dig_forward = function(self)
 		return turtle.dig()
 	end;
 	
@@ -42,7 +41,7 @@ Agent = Class:new({
 		return turtle.digUp()
 	end;
 	
-	place_ahead = function(self)
+	place_forward = function(self)
 		return turtle.place()
 	end;
 	
@@ -54,7 +53,7 @@ Agent = Class:new({
 		return turtle.placeDown()
 	end;
 	
-	detect_ahead = function(self)
+	detect_forward = function(self)
 		return turtle.detect()
 	end;
 	
@@ -66,11 +65,19 @@ Agent = Class:new({
 		return turtle.detectDown()
 	end;
 	
-	select_item = function(self, inventory_id)
-		return turtle.select()
+	inspect_forward = function(self)
+		return turtle.inspect()
 	end;
 	
-	update_knowledge = function(self)
-		--detect_ahead, detect_up, detect_down
+	inspect_up = function(self)
+		return turtle.inspectUp()
+	end;
+	
+	inspect_down = function(self)
+		return turtle.inspectDown()
+	end;
+	
+	select_item = function(self, inventory_id)
+		return turtle.select()
 	end;
 })

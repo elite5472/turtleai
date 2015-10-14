@@ -2,6 +2,11 @@ require "class"
 require "vector"
 
 Direction = Class:new({
+	NORTH_VECTOR = Vector:new({z = -1});
+	SOUTH_VECTOR = Vector:new({z =  1});
+	WEST_VECTOR = Vector:new({x = -1});
+	EAST_VECTOR = Vector:new({x = 1});
+	
 	north = 0;
 	east = 1;
 	south = 2;
@@ -11,13 +16,13 @@ Direction = Class:new({
 	
 	parse = function(self, string)
 		if string == "north" then
-			return self:new({v = 0})
+			return Direction:new({v = self.north})
 		elseif string == "east" then
-			return self:new({v = 1})
+			return Direction:new({v = self.east})
 		elseif string == "south" then
-			return self:new({v = 2})
+			return Direction:new({v = self.south})
 		elseif string == "west" then
-			return self:new({v = 3})
+			return Direction:new({v = self.west})
 		end
 	end;
 	
@@ -38,22 +43,34 @@ Direction = Class:new({
 	end;
 	
 	vector = function(self)
-		if self.v == 0 then return Vector:new({x = 0, y = 1})
-		elseif self.v == 1 then return Vector:new({x = 1, y = 0})
-		elseif self.v == 2 then return Vector:new({x = 0, y = -1})
-		elseif self.v == 3 then return Vector:new({x = -1, y = 0})
+		if self.v == self.north then return self.NORTH_VECTOR
+		elseif self.v == self.east then return self.EAST_VECTOR
+		elseif self.v == self.south then return self.SOUTH_VECTOR
+		elseif self.v == self.west then return self.WEST_VECTOR
 		end
 	end;
 	
 	__tostring = function(self)
-		if self.v == 0 then
-			return "north"
-		elseif self.v == 1 then
-			return "east"
-		elseif self.v == 2 then
-			return "south"
-		elseif self.v == 3 then
-			return "west"
+		if self.v == self.north then
+			return "North"
+		elseif self.v == self.east then
+			return "East"
+		elseif self.v == self.south then
+			return "South"
+		elseif self.v == self.west then
+			return "West"
+		end
+	end;
+	
+	tochar = function(self)
+		if self.v == self.north then
+			return "N"
+		elseif self.v == self.east then
+			return "E"
+		elseif self.v == self.south then
+			return "S"
+		elseif self.v == self.west then
+			return "W"
 		end
 	end;
 })

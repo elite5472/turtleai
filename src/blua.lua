@@ -5,8 +5,10 @@ Blua = Class:new{
 	agent = nil;
 	
 	step_once = function(self)
-		print("step_once")
+		print("BDI Pass Started")
+		agent:update_knowledge()
 		local d = self:check_desires();
+		if d == nil then return "NO_DESIRE" end
 		return self:set_intent(d.conditions);
 	end;
 	
@@ -19,13 +21,11 @@ Blua = Class:new{
 	end;
 	
 	set_intent = function(self, intent)
-		print("Looking for plans for...")
-		print(intent)
+		print("Looking for plans for " .. intent)
 		for k, v in pairs(self.agent.plans) do
-			print("Evaluating...")
-			print(k)
+			print("Evaluating " .. k)
 			if self:evaluate_conditions(intent, v.goals) and self:evaluate_conditions(v.preconditions, self.agent.knowledge) then
-				return v.execute(agent, self);
+				return v:execute(agent, self);
 			end
 		end
 		return "NO_MATCH";		
@@ -37,21 +37,36 @@ Blua = Class:new{
 		for k, v in pairs(self.agent.desires) do
 			print(k);
 			local d = self:check_desire(k);
-			print(d.priority)
-			if desire == nil or desire.priority < d.priority then
-				desire = d;
+			if not evaluate_conditions(d.conditions, self.agent.knowledge) then
+				print(d.name .. " => " .. d.priority)
+				if desire == nil or desire.priority < d.priority then
+					desire = d;
+				end
 			end
 		end
-		print("Desire picked!");
-		print(desire.name);
+		
+		if desire.priority == 0 then
+			return nil
+		end
+		
 		return desire;
 	end;
 	
 	check_desire = function(self, desire)
+		local p = nil
+		local t = type(desire.priority)
+		if t == "function" then
+			p = self.agent.desires[desire]:priority(self.agent)
+		elseif t == "number" then
+			p = self.agent.desires[desire].priority
+		else
+			error("Desire " .. desire .. "'s priority must be a number or function.")
+		end
+		
 		return {
 			name = desire;
 			conditions = self.agent.desires[desire].conditions;
-			priority = self.agent.desires[desire].priority(self.agent);
+			priority = p;
 		};
 	end;
 	
@@ -63,9 +78,6 @@ Blua = Class:new{
 	end;
 	
 	evaluate_conditions = function(self, required, current)
-		print("Evaluating conditions required/current...")
-		print(required)
-		print(current)
 		if required == nil then
 			required = {};
 		else

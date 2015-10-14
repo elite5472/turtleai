@@ -37,7 +37,7 @@ Dir["app/*.lua"].each do |f|
 	if code != newcode
 		File.write("bin/#{app}.lua", newcode)
 		puts "Uploading #{app} to pastebin..."
-		bins["#{app}.lua"] = "pastebin get " + File.basename(`pastebin -f bin/#{app}.lua`).gsub("\n", "") + " #{app}"
+		#["#{app}.lua"] = "pastebin get " + File.basename(`pastebin -f bin/#{app}.lua`).gsub("\n", "") + " #{app}"
 		puts bins["#{app}.lua"]
 	end
 end
