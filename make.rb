@@ -1,6 +1,8 @@
 require 'yaml'
 require 'fileutils'
 
+$require_exceptions = ["math"]
+
 def combine(file, path, ignore = [])
 	dependencies = File.open(file).read().scan(/require\s+"(.+)"\s*;?\s*/)
 	code = File.open(file).read().gsub(/require\s+"(.+)"\s*;?\s*/, '')
@@ -8,7 +10,7 @@ def combine(file, path, ignore = [])
 	out = ""
 	
 	dependencies.each do |d|
-		if !ignore.include? d[0]
+		if !ignore.include?(d[0]) and !$require_exceptions.include?(d[0])
 			out = out + "\n" + combine("#{path}/#{d[0]}.lua", path, ignore)
 			ignore << d[0]
 		end
