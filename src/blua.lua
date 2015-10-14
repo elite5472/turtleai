@@ -6,7 +6,7 @@ Blua = Class:new{
 	
 	step_once = function(self)
 		print("BDI Pass Started")
-		agent:update_knowledge()
+		if self.agent.update_knowledge ~= nil then self.agent:update_knowledge() end
 		local d = self:check_desires();
 		if d == nil then return "NO_DESIRE" end
 		return self:set_intent(d.conditions);

@@ -35,8 +35,6 @@ BDI_Agent = Agent:new({
 			path = nil;
 			target = nil;
 			execute = function(self, agent, engine)
-				agent:update_knowledge();
-				
 				if agent.knowledge.pos.loc == agent.knowledge.target then
 					agent.knowledge.target = nil
 					return "SUCCESS";
@@ -48,7 +46,6 @@ BDI_Agent = Agent:new({
 			preconditions = nil;
 			goals = "direction_known";
 			execute = function(self, agent, engine)
-				agent:update_knowledge()
 				for i = 1, 4 do
 					if agent:move_forward() then
 						agent:update_knowledge()
