@@ -64,7 +64,7 @@ BDI_Agent = Agent:new({
 				l:add(a + Vector:new({y = 1}))
 				l:add(a + Vector:new({y = -1}))
 				return l
-				print(c6)
+				print("c6")
 			end;			
 
 			execute = function(self, agent, engine)
