@@ -111,7 +111,7 @@ List = Class:new({
 		local current = self.list
 		while current ~= nil do
 			if not first then string = string .. ", " end
-			string = string .. current.value
+			string = string .. current.value:__tostring()
 			current = current.next
 			first = false
 		end
