@@ -227,6 +227,7 @@ BDI_Agent = Agent:new({
 				cost = 2;
 			}
 		end
+		print("Detected " .. entry.name)
 		self.knowledge.map:set(entry, x, y, z)
 	end;  
 })
