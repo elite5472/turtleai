@@ -168,7 +168,7 @@ BDI_Agent = Agent:new({
 				loc = gpsv;
 			})
 		elseif self.knowledge.pos.loc ~= gpsv then
-			self.knowledge.prevpos = knowledge.pos
+			self.knowledge.prevpos = self.knowledge.pos
 			self.knowledge.pos = Position:new({
 				loc = gpsv;
 				dir = self.knowledge.prevpos.dir
