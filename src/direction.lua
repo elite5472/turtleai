@@ -15,7 +15,7 @@ Direction = Class:new({
 	v = 0;
 	
 	parse = function(self, s)
-		local s = string.lower(s)
+		s = string.lower(s)
 		if s == "north" then
 			return Direction:new({v = self.north})
 		elseif s == "east" then
