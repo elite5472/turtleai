@@ -156,6 +156,7 @@ BDI_Agent = Agent:new({
 	update_knowledge = function(self)
 		--Step 1: Location
 		local gpsx, gpsy, gpsz = gps.locate()
+		print("Location: " .. gpsx .. ", " .. gpsy .. ", " gpsz)
 		local gpsv = Vector:new({
 			x = gpsx;
 			y = gpsy;
@@ -219,7 +220,6 @@ BDI_Agent = Agent:new({
 				cost = 2;
 			}
 		end
-		print("Detected " .. entry.name)
 		self.knowledge.map:set(entry, x, y, z)
 	end;  
 })
