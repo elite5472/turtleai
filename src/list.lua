@@ -1,7 +1,7 @@
 require "class"
 
 List = Class:new({
-	list =  nil;
+	list = nil;
 	tail = nil;
 	size = 0;
 	
@@ -92,12 +92,13 @@ List = Class:new({
 		local current = self.list
 		while current ~= nil do
 			List:add(current.value)
+			current = current.next
 		end
 		return out
 	end;
 	
 	each = function(self)
-		local current = self:copy().list
+		local current = { next = self:copy().list, value = nil }
 		return function()
 			current = current.next
 			if current ~= nil then return current.value else return nil end
