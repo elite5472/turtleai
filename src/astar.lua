@@ -40,7 +40,7 @@ AStar = Class:new({
 		while open.size > 0 do
 			local path = open:get(0)
 			if shortest == nil or path.cost < shortest.cost then
-				for x in self.expand(path.nodes:last()) do 
+				for x in self.expand(path.nodes:last()):each() do 
 					if not path.nodes:contains(x) then
 						print("c2")
 						new_path = {
