@@ -17,8 +17,6 @@ AStar = Class:new({
 	end;
 	
 	find = function(self, a, b)
-		print(a:__tostring())
-		print(b:__tostring())
 		local shortest = nil
 		local open = List:new()
 		local c = function(a, b)
@@ -34,7 +32,7 @@ AStar = Class:new({
 		local start = {
 			nodes = List:new();
 			cost = 0;
-			estimate = self:estimate(a, b);
+			estimate = self.estimate(a, b);
 		}
 		start.nodes:add(a)
 		open:add(start)
