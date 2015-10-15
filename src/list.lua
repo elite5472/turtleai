@@ -101,6 +101,7 @@ List = Class:new({
 		local current = { next = self:copy().list, value = nil }
 		return function()
 			current = current.next
+			print("each " .. current.value:__tostring())
 			if current ~= nil then return current.value else return nil end
 		end
 	end;
