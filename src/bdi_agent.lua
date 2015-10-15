@@ -178,15 +178,7 @@ BDI_Agent = Agent:new({
 		if self.knowledge.prevpos ~= nil and self.knowledge.prevpos.loc:dist(knowledge.pos.loc) == 1 then
 			--Data is there and reliable, calculate orientation.
 			local ori = self.knowledge.pos.loc - self.knowledge.prevpos.loc
-			if ori == self.NORTH_VECTOR then
-				self.knowledge.pos.dir = Direction:parse("north")
-			elseif ori == self.SOUTH_VECTOR then
-				self.knowledge.pos.dir = Direction:parse("south")
-			elseif ori == self.WEST_VECTOR then
-				self.knowledge.pos.dir = Direction:parse("west")
-			elseif ori == self.EAST_VECTOR then
-				self.knowledge.pos.dir = Direction:parse("east")
-			end
+			self.knowledge.pos.dir = Direction:from_vector(ori)
 		end
 		
 		--Step 3: Detection
