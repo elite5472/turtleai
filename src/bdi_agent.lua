@@ -44,7 +44,6 @@ BDI_Agent = Agent:new({
 				else
 					return x.cost
 				end
-				print("c8")
 			end;
 	
 			estimate = function(a, b)
