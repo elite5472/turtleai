@@ -206,10 +206,7 @@ BDI_Agent = Agent:new({
 	
 	register_block = function(self, x, y, z, block)
 		local entry = nil
-		print("Hello")
-		print(type(block))
-		print(block.name)
-		if block == nil then
+		if block == nil or type(block) == "string" then
 			entry = {
 				name = "empty";
 				cost = 1;
