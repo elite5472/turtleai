@@ -17,8 +17,8 @@ AStar = Class:new({
 	end;
 	
 	find = function(self, a, b)
-		print(a:__tostring)
-		print(b:__tostring)
+		print(a:__tostring())
+		print(b:__tostring())
 		local shortest = nil
 		local open = List:new()
 		local c = function(a, b)
