@@ -39,7 +39,7 @@ Blua = Class:new{
 			print(k);
 			local d = self:check_desire(k);
 			if not evaluate_conditions(d.conditions, self.agent.knowledge) then
-				print(d.name .. " => " .. d.priority)
+				--print(d.name .. " => " .. d.priority)
 				if desire == nil or desire.priority < d.priority then
 					desire = d;
 				end
