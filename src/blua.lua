@@ -35,9 +35,7 @@ Blua = Class:new{
 	check_desires = function(self)
 		local desire = nil;
 		for k, v in pairs(self.agent.desires) do
-			print(k);
 			local d = self:check_desire(k);
-			print(d.conditions)
 			if not self:evaluate_conditions(d.conditions, self.agent.knowledge) then
 				if desire == nil or desire.priority < d.priority then
 					desire = d;
@@ -92,7 +90,6 @@ Blua = Class:new{
 		
 		for k, v in pairs(required) do
 			if (v ~= current[k]) and (current[k] ~= nil or v) then
-				print("Returning false")
 				return false
 			end
 		end
