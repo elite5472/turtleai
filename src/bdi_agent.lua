@@ -70,6 +70,7 @@ BDI_Agent = Agent:new({
 				})
 				
 				if agent.knowledge.target ~= nil and self.target ~= agent.knowledge.target then
+					print("Computing path to " .. agent.knowledge.target:__tostring())
 					self.target = agent.knowledge.target
 					self.path = search:find(agent.knowledge.pos.loc, self.target)
 				end
@@ -80,6 +81,7 @@ BDI_Agent = Agent:new({
 				end
 				
 				if self.path.nodes.size > 0 then
+					print("Moving...")
 					local current = self.path:get(0) - agent.knowledge.pos.loc
 					self.path:remove(self.path:get(0))
 					local fail = false
