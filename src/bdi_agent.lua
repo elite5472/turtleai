@@ -32,12 +32,72 @@ BDI_Agent = Agent:new({
 		travel = {
 			preconditions = nil;
 			goals = "target_maint";
+			agent = nil;
 			path = nil;
 			target = nil;
+
+			cost = function(a, b)
+				local x = agent.knowledge.map:get(b.x, b.y, b.z)
+				if x ~= nil then
+					return 2
+				else
+					return x.cost
+				end
+			end;
+	
+			estimate = function(a, b)
+				local d = b - a
+				return math.abs(d.x) + math.abs(d.y) + math.abs(d.z)
+			end;
+	
+			expand = function(a)
+				local l = List:new()
+				l:add(a + Direction.NORTH_VECTOR)
+				l:add(a + Direction.SOUTH_VECTOR)
+				l:add(a + Direction.EAST_VECTOR)
+				l:add(a + Direction.WEST_VECTOR)
+				l:add(a + Vector:new({y = 1}))
+				l:add(a + Vector:new({y = -1}))
+				return l
+			end;			
+
 			execute = function(self, agent, engine)
-				if agent.knowledge.pos.loc == agent.knowledge.target then
+				self.agent = agent
+				local search = AStar:new({
+					cost = self.cost;
+					estimate = self.estimate;
+					expand = self.expand
+				})
+				
+				if agent.knowledge.target ~= nil and self.target ~= agent.knowledge.target then
+					self.target = agent.knowledge.target
+					self.path = search:find(agent.knowledge.pos.loc, self.target)
+				end
+				
+				if agent.knowledge.pos.loc == self.target then
 					agent.knowledge.target = nil
 					return "SUCCESS";
+				end
+				
+				if self.path.nodes.size > 0 then
+					local current = self.path:get(0) - agent.knowledge.pos.loc
+					local fail = false
+					if current == Vector:new({y = 1}) then
+						fail = not agent:move_up() or not (agent:dig_up() and agent:move_up())
+					elseif current == Vector:new({y = -1}) then
+						fail = not agent:move_down() or not (agent:dig_down() and agent:move_down())
+					else
+						local dir = Direction:from_vector(current)
+						if dir == nil then 
+							fail = true
+						else
+							fail = not (agent:turn_to(dir) and agent:move_forward())
+						end
+					end
+					if fail then return "FAILURE" else return "CONTINUE" end
+				else
+					agent.knowledge.target = nil
+					return "FAILURE"
 				end
 			end
 		};
@@ -45,6 +105,7 @@ BDI_Agent = Agent:new({
 		find_direction = {
 			preconditions = nil;
 			goals = "direction_known";
+			
 			execute = function(self, agent, engine)
 				for i = 1, 4 do
 					if agent:move_forward() then
@@ -77,6 +138,20 @@ BDI_Agent = Agent:new({
 		return r
 	end;
 	
+	turn_around = function(self)
+		return self:turn_right() and self:turn_right()
+	end;
+	
+	turn_to = function(self, direction)
+		local d = self.knowledge.pos.dir
+		if d:right() == direction then
+			return self:turn_right()
+		elseif d:left() == direction then
+			return self:turn_left()
+		elseif d:opposite() == direction then
+			return self:turn_around()
+		end
+	end;
 	
 	update_knowledge = function(self)
 		--Step 1: Location

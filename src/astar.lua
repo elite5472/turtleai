@@ -4,8 +4,6 @@ require "math"
 require "list"
 
 AStar = Class:new({
-	n = 3;
-	space = Multitable:new();
 	
 	cost = function(a, b)
 		return 1
