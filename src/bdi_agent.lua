@@ -111,7 +111,7 @@ BDI_Agent = Agent:new({
 					if agent:move_forward() then
 						agent:update_knowledge()
 						direction_known = true
-						print("Direction calibrated, agent is facing " .. agent.knowledge.pos.dir)
+						print("Direction calibrated, agent is facing " .. agent.knowledge.pos.dir:__tostring())
 						return "SUCCESS"
 					end
 					agent:turn_left()
