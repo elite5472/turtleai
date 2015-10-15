@@ -47,6 +47,7 @@ AStar = Class:new({
 				print("c12")
 				for x in expansion:each() do
 					print(x:__tostring())
+					print(path.nodes:contains(x))
 				end
 				for x in expansion:each() do
 					print("c9")
