@@ -44,7 +44,10 @@ AStar = Class:new({
 				local last = path.nodes:last()
 				print("c11 " .. last:__tostring())
 				local expansion = self.expand(last)
-				print("c12 " .. expansion:__tostring())
+				print("c12")
+				for x in expansion:each() do
+					print(x:__tostring())
+				end
 				for x in expansion:each() do
 					print("c9")
 					io.read()
