@@ -93,7 +93,8 @@ Blua = Class:new{
 		end
 		
 		for k, v in pairs(required) do
-			print(k .. " : " .. v .. " => " .. current[k])
+			print(v)
+			print(current[k])
 			if (v ~= current[k]) and (current[k] ~= nil or v) then
 				return false
 			end
