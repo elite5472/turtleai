@@ -81,6 +81,7 @@ BDI_Agent = Agent:new({
 				
 				if self.path.nodes.size > 0 then
 					local current = self.path:get(0) - agent.knowledge.pos.loc
+					self.path:remove(self.path:get(0))
 					local fail = false
 					if current == Vector:new({y = 1}) then
 						fail = not agent:move_up() or not (agent:dig_up() and agent:move_up())
@@ -94,7 +95,13 @@ BDI_Agent = Agent:new({
 							fail = not (agent:turn_to(dir) and agent:move_forward())
 						end
 					end
-					if fail then return "FAILURE" else return "CONTINUE" end
+					if fail then
+						self.path = nil
+						self.target = nil
+						return "FAILURE"
+					else 
+						return "CONTINUE"
+					end
 				else
 					agent.knowledge.target = nil
 					return "FAILURE"
