@@ -38,6 +38,7 @@ AStar = Class:new({
 		open:add(start)
 		print("c1")
 		while open.size > 0 do
+			print("c10")
 			local path = open:get(0)
 			if shortest == nil or path.cost < shortest.cost then
 				for x in self.expand(path.nodes:last()):each() do
