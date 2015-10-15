@@ -46,7 +46,11 @@ BDI_Agent = Agent:new({
 			end;
 	
 			estimate = function(a, b)
+				print("c3")
+				print(a:__tostring())
+				print(b:__tostring())
 				local d = b - a
+				print("c4")
 				return math.abs(d.x) + math.abs(d.y) + math.abs(d.z)
 			end;
 	
@@ -72,8 +76,6 @@ BDI_Agent = Agent:new({
 				if agent.knowledge.target ~= nil and self.target ~= agent.knowledge.target then
 					print("Computing path to " .. agent.knowledge.target:__tostring())
 					self.target = agent.knowledge.target
-					print(agent.knowledge.pos.loc:__tostring())
-					print(self.target:__tostring())
 					self.path = search:find(agent.knowledge.pos.loc, self.target)
 				end
 				
