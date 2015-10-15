@@ -123,17 +123,17 @@ BDI_Agent = Agent:new({
 	};
 	
 	turn_left = function(self)
-		r = Agent.turn_left(self)
-		if knowledge.pos ~= nil then
-			knowledge.pos.dir = knowledge.pos.dir:left()
+		local r = Agent.turn_left(self)
+		if self.knowledge.pos ~= nil then
+			self.knowledge.pos.dir = self.knowledge.pos.dir:left()
 		end
 		return r
 	end;
 	
 	turn_right = function(self)
-		r = Agent.turn_right(self)
-		if knowledge.pos ~= nil then
-			knowledge.pos.dir = knowledge.pos.dir:right()
+		local r = Agent.turn_right(self)
+		if self.knowledge.pos ~= nil then
+			self.knowledge.pos.dir = self.knowledge.pos.dir:right()
 		end
 		return r
 	end;
@@ -205,6 +205,7 @@ BDI_Agent = Agent:new({
 	end;
 	
 	register_block = function(self, x, y, z, block)
+		local entry = nil
 		if block == nil then
 			entry = {
 				name = "empty";
