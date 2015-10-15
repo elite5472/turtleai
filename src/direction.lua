@@ -53,9 +53,9 @@ Direction = Class:new({
 	
 	from_vector = function(self, v)
 		if v == self.NORTH_VECTOR then return self:parse("north")
-		elseif v = self.SOUTH_VECTOR then return self:parse("south")
-		elseif v = self.EAST_VECTOR then return self:parse("east")
-		elseif v = self.WEST_VECTOR then return self:parse("west")
+		elseif v == self.SOUTH_VECTOR then return self:parse("south")
+		elseif v == self.EAST_VECTOR then return self:parse("east")
+		elseif v == self.WEST_VECTOR then return self:parse("west")
 		end
 	end;
 	
