@@ -96,6 +96,7 @@ Blua = Class:new{
 			print(v)
 			print(current[k])
 			if (v ~= current[k]) and (current[k] ~= nil or v) then
+				print("Returning false")
 				return false
 			end
 		end
