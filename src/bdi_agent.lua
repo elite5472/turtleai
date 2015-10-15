@@ -63,8 +63,8 @@ BDI_Agent = Agent:new({
 				l:add(a + Direction.WEST_VECTOR)
 				l:add(a + Vector:new({y = 1}))
 				l:add(a + Vector:new({y = -1}))
-				return l
 				print("c6")
+				return l
 			end;			
 
 			execute = function(self, agent, engine)
