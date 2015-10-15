@@ -26,7 +26,7 @@ Blua = Class:new{
 		for k, v in pairs(self.agent.plans) do
 			print("Evaluating " .. k)
 			if self:evaluate_conditions(intent, v.goals) and self:evaluate_conditions(v.preconditions, self.agent.knowledge) then
-				return v:execute(agent, self);
+				return v:execute(self.agent, self);
 			end
 		end
 		return "NO_MATCH";		
