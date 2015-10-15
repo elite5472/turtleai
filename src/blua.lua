@@ -24,8 +24,8 @@ Blua = Class:new{
 	set_intent = function(self, intent)
 		print("Looking for plans for " .. intent)
 		for k, v in pairs(self.agent.plans) do
-			print("Evaluating " .. k)
 			if self:evaluate_conditions(intent, v.goals) and self:evaluate_conditions(v.preconditions, self.agent.knowledge) then
+				print("Executing " .. k)
 				return v:execute(self.agent, self);
 			end
 		end
@@ -34,7 +34,6 @@ Blua = Class:new{
 	
 	check_desires = function(self)
 		local desire = nil;
-		print("Checking desires...");
 		for k, v in pairs(self.agent.desires) do
 			print(k);
 			local d = self:check_desire(k);
@@ -93,8 +92,6 @@ Blua = Class:new{
 		end
 		
 		for k, v in pairs(required) do
-			print(v)
-			print(current[k])
 			if (v ~= current[k]) and (current[k] ~= nil or v) then
 				print("Returning false")
 				return false
