@@ -37,24 +37,25 @@ BDI_Agent = Agent:new({
 			target = nil;
 
 			cost = function(a, b)
+				print("c7")
 				local x = agent.knowledge.map:get(b.x, b.y, b.z)
 				if x ~= nil then
 					return 2
 				else
 					return x.cost
 				end
+				print("c8")
 			end;
 	
 			estimate = function(a, b)
 				print("c3")
-				print(a:__tostring())
-				print(b:__tostring())
 				local d = b - a
 				print("c4")
 				return math.abs(d.x) + math.abs(d.y) + math.abs(d.z)
 			end;
 	
 			expand = function(a)
+				print("c5")
 				local l = List:new()
 				l:add(a + Direction.NORTH_VECTOR)
 				l:add(a + Direction.SOUTH_VECTOR)
@@ -63,6 +64,7 @@ BDI_Agent = Agent:new({
 				l:add(a + Vector:new({y = 1}))
 				l:add(a + Vector:new({y = -1}))
 				return l
+				print(c6)
 			end;			
 
 			execute = function(self, agent, engine)
