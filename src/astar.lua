@@ -1,6 +1,5 @@
 require "class"
 require "multitable"
-require "math"
 require "list"
 
 AStar = Class:new({

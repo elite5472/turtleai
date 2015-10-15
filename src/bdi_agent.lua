@@ -162,30 +162,30 @@ BDI_Agent = Agent:new({
 			z = gpsz;
 		})
 		
-		if knowledge.pos == nil then
-			knowledge.pos = Position:new({
+		if self.knowledge.pos == nil then
+			self.knowledge.pos = Position:new({
 				loc = gpsv;
 			})
-		elseif knowledge.pos.loc ~= gpsv then
-			knowledge.prevpos = knowledge.pos
-			knowledge.pos = Position:new({
+		elseif self.knowledge.pos.loc ~= gpsv then
+			self.knowledge.prevpos = knowledge.pos
+			self.knowledge.pos = Position:new({
 				loc = gpsv;
-				dir = knowledge.prevpos.dir
+				dir = self.knowledge.prevpos.dir
 			})
 		end
 		
 		--Step 2: Orientation
-		if knowledge.prevpos ~= nil and knowledge.prevpos.loc:dist(knowledge.pos.loc) == 1 then
+		if self.knowledge.prevpos ~= nil and self.knowledge.prevpos.loc:dist(knowledge.pos.loc) == 1 then
 			--Data is there and reliable, calculate orientation.
-			local ori = knowledge.pos.loc - knowledge.prevpos.loc
+			local ori = self.knowledge.pos.loc - self.knowledge.prevpos.loc
 			if ori == self.NORTH_VECTOR then
-				knowledge.pos.dir = Direction:parse("north")
+				self.knowledge.pos.dir = Direction:parse("north")
 			elseif ori == self.SOUTH_VECTOR then
-				knowledge.pos.dir = Direction:parse("south")
+				self.knowledge.pos.dir = Direction:parse("south")
 			elseif ori == self.WEST_VECTOR then
-				knowledge.pos.dir = Direction:parse("west")
+				self.knowledge.pos.dir = Direction:parse("west")
 			elseif ori == self.EAST_VECTOR then
-				knowledge.pos.dir = Direction:parse("east")
+				self.knowledge.pos.dir = Direction:parse("east")
 			end
 		end
 		

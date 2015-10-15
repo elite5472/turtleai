@@ -1,7 +1,7 @@
 require 'yaml'
 require 'fileutils'
 
-$require_exceptions = ["math"]
+$require_exceptions = []
 
 def combine(file, path, ignore = [])
 	dependencies = File.open(file).read().scan(/require\s+"(.+)"\s*;?\s*/)
