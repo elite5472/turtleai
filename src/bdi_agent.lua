@@ -23,7 +23,7 @@ BDI_Agent = Agent:new({
 		get_to_target = {
 			conditions = "target_maint";
 			priority = function(self, agent)
-				if agent.knowledge.target ~= nil and agent.knowledge.target ~= agent.knowledge.pos.loc then return 100 else return 0 end
+				if agent.knowledge.target ~= nil then return 100 else return 0 end
 			end;
 		};
 	};

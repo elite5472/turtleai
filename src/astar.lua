@@ -40,11 +40,11 @@ AStar = Class:new({
 		while open.size > 0 do
 			local path = open:get(0)
 			if shortest == nil or path.cost < shortest.cost then
-				for x in self.expand(path.node) do 
+				for x in self.expand(path.nodes:last()) do 
 					if not path.nodes:contains(x) then
 						new_path = {
 							nodes = path.nodes:copy();
-							cost = path.cost + self.cost(path.nodes.tail, x);
+							cost = path.cost + self.cost(path.nodes:last(), x);
 							estimate = self.estimate(x, b);
 						}
 						new_path.nodes:add(x)

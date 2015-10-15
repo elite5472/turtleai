@@ -27,8 +27,13 @@ List = Class:new({
 			self.tail = self.list
 		else
 			self.tail.next = {next = nil, value = o}
+			self.tail = self.tail.next
 		end
 		self.size = self.size + 1
+	end;
+	
+	last = function(self)
+		return self.tail.value
 	end;
 	
 	sort_in = function(self, o, comparator)
