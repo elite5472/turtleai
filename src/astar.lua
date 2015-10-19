@@ -36,9 +36,7 @@ AStar = Class:new({
 		}
 		start.nodes:add(a)
 		open:add(start)
-		print("c1")
 		while open.size > 0 do
-			print("c10")
 			local path = open:get(0)
 			if shortest == nil or path.cost < shortest.cost then
 				local last = path.nodes:last()
@@ -46,9 +44,7 @@ AStar = Class:new({
 				local expansion = self.expand(last)
 				print("c12")
 				for x in expansion:each() do
-					print("c9")
 					if not path.nodes:contains(x) then
-						print("c2")
 						new_path = {
 							nodes = path.nodes:copy();
 							cost = path.cost + self.cost(path.nodes:last(), x);
