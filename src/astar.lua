@@ -37,11 +37,9 @@ AStar = Class:new({
 		start.nodes:add(a)
 		open:add(start)
 		while open.size > 0 do
-			for f in open:each() do
-				print(f.cost + f.estimate .. " " .. f.cost .. "/" .. f.estimate)
-			end
-			io.read()
 			local path = open:get(0)
+			print(f.cost + f.estimate .. " " .. f.cost .. "/" .. f.estimate)
+			io.read()
 			if shortest == nil or path.cost < shortest.cost then
 				local last = path.nodes:last()
 				local expansion = self.expand(last)
