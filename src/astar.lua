@@ -59,7 +59,6 @@ AStar = Class:new({
 				end
 			end
 			open:remove(path)
-			print(open.size)
 		end
 		return shortest
 	
