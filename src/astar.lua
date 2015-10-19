@@ -39,7 +39,6 @@ AStar = Class:new({
 		while open.size > 0 do
 			local path = open:get(0)
 			print(path.cost + path.estimate .. " " .. path.cost .. "/" .. path.estimate)
-			io.read()
 			if shortest == nil or path.cost < shortest.cost then
 				local last = path.nodes:last()
 				local expansion = self.expand(last)
