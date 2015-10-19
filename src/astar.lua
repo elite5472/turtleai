@@ -49,6 +49,8 @@ AStar = Class:new({
 							estimate = self.estimate(x, b);
 						}
 						new_path.nodes:add(x)
+						print(x:__tostring())
+						print(b:__tostring())
 						if x == b and (shortest == nil or shortest.cost > new_path.cost) then
 							print("Foud path!")
 							shortest = new_path
