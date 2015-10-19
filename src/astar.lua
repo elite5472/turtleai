@@ -46,12 +46,7 @@ AStar = Class:new({
 				local expansion = self.expand(last)
 				print("c12")
 				for x in expansion:each() do
-					print(x:__tostring())
-					print(path.nodes:contains(x))
-				end
-				for x in expansion:each() do
 					print("c9")
-					io.read()
 					if not path.nodes:contains(x) then
 						print("c2")
 						new_path = {
