@@ -39,7 +39,7 @@ BDI_Agent = Agent:new({
 			cost = function(a, b)
 				print("c7")
 				local x = BDI_Agent.knowledge.map:get(b.x, b.y, b.z)
-				if x ~= nil then
+				if x == nil then
 					return 2
 				else
 					return x.cost
