@@ -48,6 +48,7 @@ AStar = Class:new({
 							cost = path.cost + self.cost(path.nodes:last(), x);
 							estimate = self.estimate(x, b);
 						}
+						print("Path: " .. new_path.cost .. " Estimate: " .. new_path.estimate)
 						new_path.nodes:add(x)
 						if x == b and (shortest == nil or shortest.cost > new_path.cost) then
 							shortest = new_path
@@ -57,7 +58,6 @@ AStar = Class:new({
 					end
 				end
 			end
-			print(open.size)
 			open:remove(path)
 			print(open.size)
 		end
