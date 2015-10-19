@@ -50,6 +50,7 @@ BDI_Agent = Agent:new({
 				local distance = math.abs(d.x) + math.abs(d.y) + math.abs(d.z)
 				print(a:__tostring() .. " => " .. b:__tostring() .. " = " .. distance)
 				io.read()
+				return distance
 			end;
 	
 			expand = function(a)
