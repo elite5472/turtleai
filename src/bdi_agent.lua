@@ -48,7 +48,7 @@ BDI_Agent = Agent:new({
 			estimate = function(a, b)
 				local d = b - a
 				local distance = math.abs(d.x) + math.abs(d.y) + math.abs(d.z)
-				print(a:__tostring() .. " => " .. b:__tostring() .. " = " .. distance)
+				print(a:__tostring() .. " => " .. b:__tostring() .. " = " .. d:__tostring() .. " = " .. distance)
 				io.read()
 				return distance
 			end;
