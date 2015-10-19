@@ -38,6 +38,9 @@ AStar = Class:new({
 		open:add(start)
 		while open.size > 0 do
 			local path = open:get(0)
+			print(b)
+			print(path:__tostring())
+			io.read()
 			if shortest == nil or path.cost < shortest.cost then
 				local last = path.nodes:last()
 				local expansion = self.expand(last)
@@ -49,8 +52,6 @@ AStar = Class:new({
 							estimate = self.estimate(x, b);
 						}
 						new_path.nodes:add(x)
-						print(x:__tostring())
-						print(b:__tostring())
 						if x == b and (shortest == nil or shortest.cost > new_path.cost) then
 							print("Foud path!")
 							shortest = new_path
