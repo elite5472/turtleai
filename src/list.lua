@@ -1,9 +1,17 @@
 require "class"
 
+ListIterator = Class:new({
+	current = nil;
+	__call = function(self)
+		self.current = self.current.next
+		if self.current ~= nil then return self.current.value else return nil end	
+	end;
+})
+
 List = Class:new({
 	list = nil;
 	tail = nil;
-	size = 0;
+	size = 0; 
 	
 	goto = function(self, i)
 		if i < 0 then return nil end
@@ -91,18 +99,14 @@ List = Class:new({
 		local out = List:new()
 		local current = self.list
 		while current ~= nil do
-			List:add(current.value)
+			out:add(current.value)
 			current = current.next
-		end
+		end 
 		return out
 	end;
 	
 	each = function(self)
-		local current = { next = self:copy().list, value = nil }
-		return function()
-			current = current.next
-			if current ~= nil then return current.value else return nil end
-		end
+		return ListIterator:new({ current = { next = self:copy().list, value = nil } })
 	end;
 	
 	__tostring = function(self)
