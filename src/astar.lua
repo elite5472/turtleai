@@ -38,7 +38,7 @@ AStar = Class:new({
 		open:add(start)
 		while open.size > 0 do
 			local path = open:get(0)
-			if shortest == nil or path.cost < shortest.cost then
+			if shortest == nil or path.cost + path.estimate < shortest.cost then
 				local last = path.nodes:last()
 				local expansion = self.expand(last)
 				for x in expansion:each() do
