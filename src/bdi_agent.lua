@@ -159,18 +159,18 @@ BDI_Agent = Agent:new({
 	};
 	
 	turn_left = function(self)
-		print("left")
 		local r = Agent.turn_left(self)
 		if self.knowledge.pos ~= nil then
+			print("left")
 			self.knowledge.pos.dir = self.knowledge.pos.dir:left()
 		end
 		return r
 	end;
 	
 	turn_right = function(self)
-		print("right")
 		local r = Agent.turn_right(self)
 		if self.knowledge.pos ~= nil then
+			print("right")
 			self.knowledge.pos.dir = self.knowledge.pos.dir:right()
 		end
 		return r
