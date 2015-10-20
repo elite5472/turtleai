@@ -229,11 +229,11 @@ BDI_Agent = Agent:new({
 		self:register_block(dv.x, dv.y, dv.z, dx)
 		
 		ds, dx = self:inspect_up()
-		dv = self.knowledge.pos.loc + self.knowledge.pos.dir:vector()
+		dv = self.knowledge.pos.loc + Vector:new({y = 1})
 		self:register_block(dv.x, dv.y, dv.z, dx)
 		
 		ds, dx = self:inspect_down()
-		dv = self.knowledge.pos.loc + self.knowledge.pos.dir:vector()
+		dv = self.knowledge.pos.loc + Vector:new({y = -1})
 		self:register_block(dv.x, dv.y, dv.z, dx)
 	end;
 	
