@@ -14,7 +14,7 @@ Blua = Class:new{
 	
 	step_through = function(self)
 		local result = nil;
-		while result ~= "FAILURE" do
+		while result ~= "EXIT" do
 			result = self:step_once();
 			print("Step result: " .. result)
 		end

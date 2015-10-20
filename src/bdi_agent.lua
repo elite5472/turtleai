@@ -10,6 +10,7 @@ BDI_Agent = Agent:new({
 		direction_known = false;
 		target_maint = false;
 		target = nil;
+		make_target_maint = false;
 	};
 	
 	desires = {
@@ -26,6 +27,11 @@ BDI_Agent = Agent:new({
 				if agent.knowledge.target ~= nil then return 100 else return 0 end
 			end;
 		};
+		
+		make_up_target = {
+			conditions = "make_target_maint"
+			priority = 10
+		}
 	};
 	
 	plans = {
@@ -96,9 +102,7 @@ BDI_Agent = Agent:new({
 						if dir == nil then 
 							fail = true
 						else
-							print("s1")
 							fail = not (agent:turn_to(dir) and (agent:move_forward() or (agent:dig_forward() and agent:move_forward())))
-							print(fail)
 						end
 					end
 					if fail then
@@ -131,6 +135,26 @@ BDI_Agent = Agent:new({
 				end
 				--Agent cannot determine direction, stop execution.
 				return "EXIT"
+			end
+		}
+		
+		make_up_target = {
+			preconditions = nil
+			goals = "make_target_maint"
+			
+			execute = function(self, agent, engine)
+				local r = math.random(5)
+				if r == 1 then
+					agent.knowledge.target = Vector:new({x = 360, z = -450, y = 63})
+				elseif r == 2 then
+					agent.knowledge.target = Vector:new({x = 359, z = -448, y = 63})
+				elseif r == 3  then
+					agent.knowledge.target = Vector:new({x = 357, z = -448, y = 63})
+				elseif r == 4  then
+					agent.knowledge.target = Vector:new({x = 360, z = -446, y = 63})
+				elseif r == 5 then
+					agent.knowledge.target = Vector:new({x = 353, z = -448, y = 63})
+				end
 			end
 		}
 	};
