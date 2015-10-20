@@ -96,7 +96,7 @@ BDI_Agent = Agent:new({
 						if dir == nil then 
 							fail = true
 						else
-							print(s1)
+							print("s1")
 							fail = not (agent:turn_to(dir) and (agent:move_forward() or (agent:dig_forward() and agent:move_forward())))
 							print(fail)
 						end
@@ -164,6 +164,7 @@ BDI_Agent = Agent:new({
 		elseif d:opposite() == direction then
 			return self:turn_around()
 		end
+		print("No direction")
 	end;
 	
 	update_knowledge = function(self)
