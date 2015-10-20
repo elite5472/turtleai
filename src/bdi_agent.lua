@@ -48,7 +48,7 @@ BDI_Agent = Agent:new({
 			estimate = function(a, b)
 				local d = b - a
 				local distance = math.abs(d.x) + math.abs(d.y) + math.abs(d.z)
-				return 1.5 * distance
+				return 2 * distance
 			end;
 	
 			expand = function(a)
