@@ -47,6 +47,7 @@ BDI_Agent = Agent:new({
 				if x == nil then
 					return 2
 				else
+					print(x.name)
 					return x.cost
 				end
 			end;
