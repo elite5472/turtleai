@@ -220,6 +220,7 @@ BDI_Agent = Agent:new({
 		end
 		
 		--Step 3: Detection
+		print(self.knowledge.pos.loc:__tostring())
 		local ds, dx, dv, entry
 		ds, dx = self:inspect_forward()
 		dv = self.knowledge.pos.loc + self.knowledge.pos.dir:vector()
