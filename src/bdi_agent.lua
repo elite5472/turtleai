@@ -47,7 +47,6 @@ BDI_Agent = Agent:new({
 				if x == nil then
 					return 2
 				else
-					if x.name == "minecraft:bedrock" then print(x.cost) end
 					return x.cost
 				end
 			end;
@@ -245,6 +244,7 @@ BDI_Agent = Agent:new({
 				cost = 1;
 			}
 		elseif block.name == "minecraft:bedrock" then
+			print("Found bedrock at " .. x .. " " .. y .. " " .. z )
 			entry = {
 				name = block.name;
 				cost = -1;
