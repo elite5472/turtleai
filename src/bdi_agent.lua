@@ -223,7 +223,6 @@ BDI_Agent = Agent:new({
 		local ds, dx, dv, entry
 		ds, dx = self:inspect_forward()
 		dv = self.knowledge.pos.loc + self.knowledge.pos.dir:vector()
-		print(dv:__tostring())
 		self:register_block(dv.x, dv.y, dv.z, dx)
 		
 		ds, dx = self:inspect_up()
