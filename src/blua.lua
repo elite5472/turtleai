@@ -15,7 +15,7 @@ Blua = Class:new{
 		local result = nil;
 		while result ~= "EXIT" do
 			result = self:step_once();
-			--print("Step result: " .. result)
+			if result ~= "CONTINUE" then print("Step result: " .. result) end
 		end
 		return "EXIT"
 	end;
