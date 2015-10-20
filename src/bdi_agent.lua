@@ -30,7 +30,7 @@ BDI_Agent = Agent:new({
 		
 		make_up_target = {
 			conditions = "make_target_maint";
-			priority = 10;
+			priority = 0;
 		};
 	};
 	
@@ -222,8 +222,6 @@ BDI_Agent = Agent:new({
 		--Step 3: Detection
 		local ds, dx, dv, entry
 		ds, dx = self:inspect_forward()
-		print(self.knowledge.pos.loc:__tostring())
-		print(self.knowledge.pos.dir:vector():__tostring())
 		dv = self.knowledge.pos.loc + self.knowledge.pos.dir:vector()
 		print(dv:__tostring())
 		self:register_block(dv.x, dv.y, dv.z, dx)
@@ -235,6 +233,8 @@ BDI_Agent = Agent:new({
 		ds, dx = self:inspect_down()
 		dv = self.knowledge.pos.loc + Vector:new({y = -1})
 		self:register_block(dv.x, dv.y, dv.z, dx)
+		
+		
 	end;
 	
 	register_block = function(self, x, y, z, block)
