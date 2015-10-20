@@ -30,7 +30,7 @@ BDI_Agent = Agent:new({
 		
 		make_up_target = {
 			conditions = "make_target_maint";
-			priority = 0;
+			priority = 1;
 		};
 	};
 	
