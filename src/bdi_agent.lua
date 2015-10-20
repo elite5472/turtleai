@@ -95,7 +95,7 @@ BDI_Agent = Agent:new({
 						if dir == nil then 
 							fail = true
 						else
-							fail = not (agent:turn_to(dir) and agent:move_forward())
+							fail = not (agent:turn_to(dir) and (agent:move_forward() or (agent:dig_forward() and agent:move_forward())))
 						end
 					end
 					if fail then
