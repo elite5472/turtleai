@@ -60,7 +60,7 @@ AStar = Class:new({
 			end
 			open:remove(path)
 		end
-		return shortest
+		return shortest.nodes
 	
 	end;
 });
