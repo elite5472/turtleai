@@ -244,6 +244,11 @@ BDI_Agent = Agent:new({
 				name = "empty";
 				cost = 1;
 			}
+		elseif block.name == "minecraft:bedrock" then
+			entry = {
+				name = block.name;
+				cost = -1;
+			}
 		elseif string.find(block.name, "water") then
 			entry = {
 				name = block.name;
