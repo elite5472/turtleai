@@ -82,8 +82,8 @@ BDI_Agent = Agent:new({
 				end
 				
 				if self.path.size > 0 then
-					print("Moving...")
 					local current = self.path:get(0) - agent.knowledge.pos.loc
+					print("Moving " .. current:__tostring())
 					self.path:remove(self.path:get(0))
 					local fail = false
 					if current == Vector:new({y = 1}) then
