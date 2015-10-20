@@ -20,9 +20,9 @@ AStar = Class:new({
 		local shortest = nil
 		local open = List:new()
 		local c = function(a, b)
-			if (a.cost + a.estimate) > (b.cost + b.estimate) then
+			if (a.estimate) > (b.estimate) then
 				return 1
-			elseif (a.cost + a.estimate) < (b.cost + b.estimate) then
+			elseif (a.estimate) < (b.estimate) then
 				return -1
 			else
 				return 0
