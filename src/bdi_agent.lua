@@ -47,7 +47,7 @@ BDI_Agent = Agent:new({
 				if x == nil then
 					return 2
 				else
-					print(x.name)
+					if x.name == "minecraft:bedrock" then print(x.cost) end
 					return x.cost
 				end
 			end;
