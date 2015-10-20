@@ -164,7 +164,7 @@ BDI_Agent = Agent:new({
 		elseif d:opposite() == direction then
 			return self:turn_around()
 		end
-		print("No direction")
+		return true
 	end;
 	
 	update_knowledge = function(self)
