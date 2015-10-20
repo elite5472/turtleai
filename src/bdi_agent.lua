@@ -81,7 +81,7 @@ BDI_Agent = Agent:new({
 					return "SUCCESS";
 				end
 				
-				if self.path.nodes.size > 0 then
+				if self.path.size > 0 then
 					print("Moving...")
 					local current = self.path:get(0) - agent.knowledge.pos.loc
 					self.path:remove(self.path:get(0))
