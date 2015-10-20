@@ -161,7 +161,6 @@ BDI_Agent = Agent:new({
 	turn_left = function(self)
 		local r = Agent.turn_left(self)
 		if self.knowledge.pos ~= nil then
-			print("left")
 			self.knowledge.pos.dir = self.knowledge.pos.dir:left()
 		end
 		return r
@@ -170,7 +169,6 @@ BDI_Agent = Agent:new({
 	turn_right = function(self)
 		local r = Agent.turn_right(self)
 		if self.knowledge.pos ~= nil then
-			print("right")
 			self.knowledge.pos.dir = self.knowledge.pos.dir:right()
 		end
 		return r
@@ -215,7 +213,7 @@ BDI_Agent = Agent:new({
 		end
 		
 		--Step 2: Orientation
-		if self.knowledge.prevpos ~= nil and self.knowledge.prevpos.loc:dist(self.knowledge.pos.loc) == 1 then
+		if (not self.knowledge.direction_known) and self.knowledge.prevpos ~= nil and self.knowledge.prevpos.loc:dist(self.knowledge.pos.loc) == 1 then
 			--Data is there and reliable, calculate orientation.
 			local ori = self.knowledge.pos.loc - self.knowledge.prevpos.loc
 			self.knowledge.pos.dir = Direction:from_vector(ori)
