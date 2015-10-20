@@ -17,6 +17,7 @@ AStar = Class:new({
 	end;
 	
 	find = function(self, a, b)
+		if a == b then return nil end
 		local shortest = nil
 		local open = List:new()
 		local c = function(a, b)
