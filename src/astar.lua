@@ -42,7 +42,7 @@ AStar = Class:new({
 				local last = path.nodes:last()
 				local expansion = self.expand(last)
 				for x in expansion:each() do
-					if not path.nodes:contains(x) then
+					if not path.nodes:contains(x) and self.cost(path.nodes:last(), x) ~= -1 then
 						new_path = {
 							nodes = path.nodes:copy();
 							cost = path.cost + self.cost(path.nodes:last(), x);
