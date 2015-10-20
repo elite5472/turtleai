@@ -77,7 +77,6 @@ BDI_Agent = Agent:new({
 				})
 				
 				if agent.knowledge.target ~= nil and self.target ~= agent.knowledge.target then
-					print("Computing path to " .. agent.knowledge.target:__tostring())
 					self.target = agent.knowledge.target
 					self.path = search:find(agent.knowledge.pos.loc, self.target)
 					self.path:remove(self.path:get(0))
@@ -90,7 +89,6 @@ BDI_Agent = Agent:new({
 				
 				if self.path.size > 0 then
 					local current = self.path:get(0) - agent.knowledge.pos.loc
-					print("Moving " .. current:__tostring())
 					self.path:remove(self.path:get(0))
 					local fail = false
 					if current == Vector:new({y = 1}) then
@@ -195,7 +193,7 @@ BDI_Agent = Agent:new({
 	update_knowledge = function(self)
 		--Step 1: Location
 		local gpsx, gpsy, gpsz = gps.locate()
-		print("Location: " .. gpsx .. ", " .. gpsy .. ", " .. gpsz)
+		if gpsx == nil then error("Unable to use gps location.") end
 		local gpsv = Vector:new({
 			x = gpsx;
 			y = gpsy;
