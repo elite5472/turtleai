@@ -136,7 +136,7 @@ BDI_Agent = Agent:new({
 				--Agent cannot determine direction, stop execution.
 				return "EXIT"
 			end
-		}
+		};
 		
 		make_up_target = {
 			preconditions = nil;
@@ -156,7 +156,7 @@ BDI_Agent = Agent:new({
 					agent.knowledge.target = Vector:new({x = 353, z = -448, y = 63})
 				end
 			end;
-		}
+		};
 	};
 	
 	turn_left = function(self)
