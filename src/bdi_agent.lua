@@ -220,18 +220,20 @@ BDI_Agent = Agent:new({
 		end
 		
 		--Step 3: Detection
-		local ds, dx, dv, entry
-		ds, dx = self:inspect_forward()
-		dv = self.knowledge.pos.loc + self.knowledge.pos.dir:vector()
-		self:register_block(dv.x, dv.y, dv.z, dx)
-		
-		ds, dx = self:inspect_up()
-		dv = self.knowledge.pos.loc + Vector:new({y = 1})
-		self:register_block(dv.x, dv.y, dv.z, dx)
-		
-		ds, dx = self:inspect_down()
-		dv = self.knowledge.pos.loc + Vector:new({y = -1})
-		self:register_block(dv.x, dv.y, dv.z, dx)
+		if self.knowledge.direction_known then
+			local ds, dx, dv, entry
+			ds, dx = self:inspect_forward()
+			dv = self.knowledge.pos.loc + self.knowledge.pos.dir:vector()
+			self:register_block(dv.x, dv.y, dv.z, dx)
+			
+			ds, dx = self:inspect_up()
+			dv = self.knowledge.pos.loc + Vector:new({y = 1})
+			self:register_block(dv.x, dv.y, dv.z, dx)
+			
+			ds, dx = self:inspect_down()
+			dv = self.knowledge.pos.loc + Vector:new({y = -1})
+			self:register_block(dv.x, dv.y, dv.z, dx)
+		end
 		
 		
 	end;
