@@ -5,7 +5,6 @@ Blua = Class:new{
 	agent = nil;
 	
 	step_once = function(self)
-		print("BDI Pass Started")
 		if self.agent.update_knowledge ~= nil then self.agent:update_knowledge() end
 		local d = self:check_desires();
 		if d == nil then return "NO_DESIRE" end
@@ -25,7 +24,6 @@ Blua = Class:new{
 		--print("Looking for plans for " .. intent)
 		for k, v in pairs(self.agent.plans) do
 			if self:evaluate_conditions(intent, v.goals) and self:evaluate_conditions(v.preconditions, self.agent.knowledge) then
-				print("Executing " .. k)
 				return v:execute(self.agent, self);
 			end
 		end

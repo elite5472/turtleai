@@ -50,7 +50,6 @@ AStar = Class:new({
 						}
 						new_path.nodes:add(x)
 						if x == b and (shortest == nil or shortest.cost > new_path.cost) then
-							print("Foud path! " .. new_path.cost .. "/" .. new_path.estimate)
 							shortest = new_path
 						else
 							open:sort_in(new_path, c)
