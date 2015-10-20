@@ -155,6 +155,7 @@ BDI_Agent = Agent:new({
 				elseif r == 5 then
 					agent.knowledge.target = Vector:new({x = 353, z = -448, y = 63})
 				end
+				return "SUCCESS"
 			end;
 		};
 	};
