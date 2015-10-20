@@ -77,7 +77,7 @@ BDI_Agent = Agent:new({
 				})
 				
 				if agent.knowledge.target ~= nil and self.target ~= agent.knowledge.target then
-					print("Calculating Path")
+					print("Calculating Path from " .. agent.knowledge.pos.loc:__tostring() .. " to " agent.knowledge.target:__tostring())
 					self.target = agent.knowledge.target
 					self.path = search:find(agent.knowledge.pos.loc, self.target)
 					self.path:remove(self.path:get(0))
