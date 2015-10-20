@@ -139,8 +139,8 @@ BDI_Agent = Agent:new({
 		}
 		
 		make_up_target = {
-			preconditions = nil
-			goals = "make_target_maint"
+			preconditions = nil;
+			goals = "make_target_maint";
 			
 			execute = function(self, agent, engine)
 				local r = math.random(5)
@@ -155,7 +155,7 @@ BDI_Agent = Agent:new({
 				elseif r == 5 then
 					agent.knowledge.target = Vector:new({x = 353, z = -448, y = 63})
 				end
-			end
+			end;
 		}
 	};
 	
