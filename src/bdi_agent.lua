@@ -222,6 +222,8 @@ BDI_Agent = Agent:new({
 		--Step 3: Detection
 		local ds, dx, dv, entry
 		ds, dx = self:inspect_forward()
+		print(self.knowledge.pos.loc:__tostring())
+		print(self.knowledge.pos.dir:vector():__tostring())
 		dv = self.knowledge.pos.loc + self.knowledge.pos.dir:vector()
 		print(dv:__tostring())
 		self:register_block(dv.x, dv.y, dv.z, dx)
