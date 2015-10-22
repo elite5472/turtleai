@@ -65,7 +65,7 @@ BDI_Agent = Agent:new({
 					--print(agent.knowledge.mine_location.loc:__tostring())
 					for posx = agent.knowledge.mine_location.loc.x, anchor.x, xs do
 						for posz = agent.knowledge.mine_location.loc.z, anchor.z, zs do
-							--print(posx .. "/" .. posz)
+							print(posx .. "/" .. posz)
 							self.floor_blocks:add(Vector:new({x = posx, y = agent.knowledge.pos.loc.y, z = posz}))
 						end
 					end
@@ -260,7 +260,7 @@ BDI_Agent = Agent:new({
 			z = gpsz;
 		})
 		
-		print(gpsv:__tostring())
+		--print(gpsv:__tostring())
 		
 		if self.knowledge.pos == nil then
 			self.knowledge.pos = Position:new({
