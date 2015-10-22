@@ -24,6 +24,7 @@ Blua = Class:new{
 		--print("Looking for plans for " .. intent)
 		for k, v in pairs(self.agent.plans) do
 			if self:evaluate_conditions(intent, v.goals) and self:evaluate_conditions(v.preconditions, self.agent.knowledge) then
+				print("Executing " .. k)
 				return v:execute(self.agent, self);
 			end
 		end
