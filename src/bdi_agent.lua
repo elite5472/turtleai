@@ -252,7 +252,7 @@ BDI_Agent = Agent:new({
 		if gpsx == nil then error("Unable to use gps location.") end
 		if math.floor(gpsx) ~= gpsx then
 			os.sleep()
-			return self.update_knowledge()
+			return self:update_knowledge()
 		end
 		local gpsv = Vector:new({
 			x = gpsx;
