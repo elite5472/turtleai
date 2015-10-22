@@ -65,7 +65,7 @@ BDI_Agent = Agent:new({
 				end
 				
 				if self.floor_blocks.size > 0 then
-					print(floor_blocks:__tostring())
+					print(self.floor_blocks:__tostring())
 					agent.knowledge.target = self.floor_blocks:pop_first()
 					return "CONTINUE"
 				else
