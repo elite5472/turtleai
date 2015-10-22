@@ -63,13 +63,14 @@ BDI_Agent = Agent:new({
 					if d.z < 0 then zs = -1 end
 					for posx = agent.knowledge.mine_location.loc.x, anchor.x, xs do
 						for posz = agent.knowledge.mine_location.loc.z, anchor.z, zs do
+							print(posx .. "/" .. posz)
 							self.floor_blocks:add(Vector:new({x = posx, y = agent.knowledge.pos.loc.y, z = posz}))
 						end
 					end
 				end
 				
 				if self.floor_blocks.size > 0 then
-					print(self.floor_blocks:__tostring())
+					--print(self.floor_blocks:__tostring())
 					agent.knowledge.target = self.floor_blocks:pop_first()
 					return "CONTINUE"
 				else
