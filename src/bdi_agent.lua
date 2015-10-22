@@ -256,6 +256,8 @@ BDI_Agent = Agent:new({
 			z = gpsz;
 		})
 		
+		print(gpsv:__tostring())
+		
 		if self.knowledge.pos == nil then
 			self.knowledge.pos = Position:new({
 				loc = gpsv;
