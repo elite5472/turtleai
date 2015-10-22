@@ -312,7 +312,7 @@ BDI_Agent = Agent:new({
 			self.knowledge.chest_trigger = false
 			self.knowledge.mine_location = Position:new({
 				dir = self.knowledge.pos.dir:opposite();
-				loc = self.knowledge.pos.loc;
+				loc = Vector:new({x = x, y = y, z = z});
 			})
 			entry = {
 				name = block.name;
