@@ -135,7 +135,7 @@ BDI_Agent = Agent:new({
 				
 				if agent.knowledge.target ~= nil and self.target ~= agent.knowledge.target then
 					self.target = agent.knowledge.target
-					print("Searching " .. agent.knowledge.pos.loc:__tostring() .. " => " .. agent.knowledge.pos.loc:__tostring())
+					print("Searching " .. agent.knowledge.pos.loc:__tostring() .. " => " .. self.target:__tostring())
 					self.path = search:find(agent.knowledge.pos.loc, self.target)
 					print("Search complete.")
 					if self.path == nil then
