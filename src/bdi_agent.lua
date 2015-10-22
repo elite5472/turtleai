@@ -55,7 +55,7 @@ BDI_Agent = Agent:new({
 				
 				if self.floor_blocks == nil then
 					self.floor_blocks = List:new()
-					local anchor =  agent.knowledge.mine_location.loc + 1*agent.knowledge.mine_location.dir:vector() + 1*agent.knowledge.mine_location.dir:right():vector()
+					local anchor =  agent.knowledge.mine_location.loc + 3*agent.knowledge.mine_location.dir:vector() + 3*agent.knowledge.mine_location.dir:right():vector()
 					local d = anchor - agent.knowledge.mine_location.loc
 					local xs = 1
 					local zs = 1
@@ -320,7 +320,7 @@ BDI_Agent = Agent:new({
 			self.knowledge.chest_trigger = false
 			self.knowledge.mine_location = Position:new({
 				dir = self.knowledge.pos.dir:opposite();
-				loc = Vector:new({x = x, y = y, z = z});
+				loc = self.knowledge.pos.loc;
 			})
 			entry = {
 				name = block.name;
