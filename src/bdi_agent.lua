@@ -56,7 +56,7 @@ BDI_Agent = Agent:new({
 				if self.floor_blocks == nil then
 					self.floor_blocks = List:new()
 					local anchor =  agent.knowledge.mine_location.loc + 3*agent.knowledge.mine_location.dir:vector() + 3*agent.knowledge.mine_location.dir:right():vector()
-					print(anchor:__tostring())
+					print((anchor - mine_location):__tostring())
 					for posx = agent.knowledge.mine_location.loc.x, anchor.x do
 						for posz = agent.knowledge.mine_location.loc.z, anchor.z do
 							self.floor_blocks:add(Vector:new({x = posx, y = agent.knowledge.pos.loc.y, z = posz}))
