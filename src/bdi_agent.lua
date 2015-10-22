@@ -61,11 +61,11 @@ BDI_Agent = Agent:new({
 					local zs = 1
 					if d.x < 0 then xs = -1 end
 					if d.z < 0 then zs = -1 end
-					print(anchor:__tostring())
-					print(agent.knowledge.mine_location.loc:__tostring())
+					--print(anchor:__tostring())
+					--print(agent.knowledge.mine_location.loc:__tostring())
 					for posx = agent.knowledge.mine_location.loc.x, anchor.x, xs do
 						for posz = agent.knowledge.mine_location.loc.z, anchor.z, zs do
-							print(posx .. "/" .. posz)
+							--print(posx .. "/" .. posz)
 							self.floor_blocks:add(Vector:new({x = posx, y = agent.knowledge.pos.loc.y, z = posz}))
 						end
 					end
@@ -308,7 +308,7 @@ BDI_Agent = Agent:new({
 				cost = -1;
 			}
 		elseif block.name == "minecraft:chest" then
-			print("Found chest, digging shaft.")
+			print("Found chest at " .. x .. " " .. y .. " " .. z )
 			self.knowledge.chest_trigger = false
 			self.knowledge.mine_location = Position:new({
 				dir = self.knowledge.pos.dir:opposite();
