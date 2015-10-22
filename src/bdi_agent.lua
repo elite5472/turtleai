@@ -11,6 +11,8 @@ BDI_Agent = Agent:new({
 		target_maint = false;
 		target = nil;
 		make_target_maint = false;
+		chest_trigger = true;
+		mine_location = nil;
 	};
 	
 	desires = {
@@ -28,6 +30,11 @@ BDI_Agent = Agent:new({
 			end;
 		};
 		
+		mine_shaft = {
+			conditions = "chest_trigger";
+			priority = 20;
+		};
+		
 		make_up_target = {
 			conditions = "make_target_maint";
 			priority = 1;
@@ -35,6 +42,43 @@ BDI_Agent = Agent:new({
 	};
 	
 	plans = {
+		mine_shaft = {
+			preconditions = nil;
+			goals = "chest_trigger";
+			floor_blocks = nil;
+			
+			execute = function(self, agent, engine)
+				if agent.knowledge.pos.loc.y < 6 then
+					agent.knowledge.chest_trigger = true;
+					return "SUCCESS"
+				end
+				
+				if self.floor_blocks == nil then
+					self.floor_blocks = List:new()
+					local anchor =  agent.knowledge.mine_location.loc + 3*agent.knowledge.mine_location.dir:vector() + 3*agent.knowledge.mine_location.dir:right():vector()
+					for posx = agent.knowledge.mine_location.loc.x, anchor.x do
+						for posz = agent.knowledge.mine_location.loc.z, anchor.z do
+							floor_blocks:add(Vector:new({x = posx, y = agent.knowledge.pos.loc.y, z = posz}))
+						end
+					end
+				end
+				
+				if self.floor_blocks.size > 0 then
+					print(floor_blocks:__tostring())
+					agent.knowledge.target = self.floor_blocks:pop_first()
+					return "CONTINUE"
+				else
+					self.floor_blocks = nil
+					if agent:dig_down() and agent:move_down() then
+						return "CONTINUE"
+					else
+						return "FAILURE"
+					end
+				end
+				
+			end;
+		};
+		
 		travel = {
 			preconditions = nil;
 			goals = "target_maint";
@@ -251,6 +295,17 @@ BDI_Agent = Agent:new({
 			}
 		elseif block.name == "minecraft:bedrock" then
 			print("Found bedrock at " .. x .. " " .. y .. " " .. z )
+			entry = {
+				name = block.name;
+				cost = -1;
+			}
+		elseif block.name == "minecraft:chest" then
+			print("Found chest, digging shaft.")
+			self.knowledge.chest_trigger = false
+			self.knowledge.mine_location = Position:new({
+				dir = self.knowledge.pos.dir:opposite();
+				loc = self.knowledge.pos.loc;
+			})
 			entry = {
 				name = block.name;
 				cost = -1;

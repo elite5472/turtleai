@@ -77,6 +77,14 @@ List = Class:new({
 		return false
 	end;
 	
+	pop_first = function(self)
+		if self.size == 0 then return nil end
+		local out = self.list
+		self.list = self.list.next
+		self.size = self.size - 1
+		return out.value
+	end;
+	
 	remove = function(self, o)
 		local previous = nil
 		local current = self.list
