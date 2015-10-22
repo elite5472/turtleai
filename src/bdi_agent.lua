@@ -65,7 +65,7 @@ BDI_Agent = Agent:new({
 					--print(agent.knowledge.mine_location.loc:__tostring())
 					for posx = agent.knowledge.mine_location.loc.x, anchor.x, xs do
 						for posz = agent.knowledge.mine_location.loc.z, anchor.z, zs do
-							--print(posx .. "/" .. posz)
+							print(posx .. "/" .. posz)
 							self.floor_blocks:add(Vector:new({x = posx, y = agent.knowledge.pos.loc.y, z = posz}))
 						end
 					end
@@ -135,9 +135,9 @@ BDI_Agent = Agent:new({
 				
 				if agent.knowledge.target ~= nil and self.target ~= agent.knowledge.target then
 					self.target = agent.knowledge.target
-					print("Searching " .. agent.knowledge.pos.loc:__tostring() .. " => " .. self.target:__tostring())
+					--print("Searching " .. agent.knowledge.pos.loc:__tostring() .. " => " .. self.target:__tostring())
 					self.path = search:find(agent.knowledge.pos.loc, self.target)
-					print("Search complete.")
+					--print("Search complete.")
 					if self.path == nil then
 						agent.knowledge.target = nil
 						return "FAILURE"
