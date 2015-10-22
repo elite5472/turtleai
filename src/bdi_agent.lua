@@ -55,7 +55,7 @@ BDI_Agent = Agent:new({
 				
 				if self.floor_blocks == nil then
 					self.floor_blocks = List:new()
-					local anchor =  agent.knowledge.mine_location.loc + 1*agent.knowledge.mine_location.dir:vector() + 1*agent.knowledge.mine_location.dir:right():vector()
+					local anchor =  agent.knowledge.mine_location.loc + 1*agent.knowledge.mine_location.dir:opposite():vector() + 1*agent.knowledge.mine_location.dir:opposite():right():vector()
 					local d = anchor - agent.knowledge.mine_location.loc
 					local xs = 1
 					local zs = 1
