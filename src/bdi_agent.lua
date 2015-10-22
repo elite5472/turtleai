@@ -55,12 +55,14 @@ BDI_Agent = Agent:new({
 				
 				if self.floor_blocks == nil then
 					self.floor_blocks = List:new()
-					local anchor =  agent.knowledge.mine_location.loc + 3*agent.knowledge.mine_location.dir:vector() + 3*agent.knowledge.mine_location.dir:right():vector()
+					local anchor =  agent.knowledge.mine_location.loc + 1*agent.knowledge.mine_location.dir:vector() + 1*agent.knowledge.mine_location.dir:right():vector()
 					local d = anchor - agent.knowledge.mine_location.loc
 					local xs = 1
 					local zs = 1
 					if d.x < 0 then xs = -1 end
 					if d.z < 0 then zs = -1 end
+					print(anchor:__tostring())
+					print(agent.knowledge.mine_location.loc:__tostring())
 					for posx = agent.knowledge.mine_location.loc.x, anchor.x, xs do
 						for posz = agent.knowledge.mine_location.loc.z, anchor.z, zs do
 							print(posx .. "/" .. posz)
