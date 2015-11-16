@@ -150,8 +150,15 @@ BDI_Agent = Agent:new({
 					if current == Vector:new({y = 1}) then
 						fail = not agent:move_up() or not (agent:dig_up() and agent:move_up())
 					elseif current == Vector:new({y = -1}) then
-						print("check")
-						fail = not agent:move_down() or not (agent:dig_down() and agent:move_down())
+						local plan = agent:move_down()
+						print(plan)
+						if not plan then
+							plan = agent:dig_down()
+							plan = plan & agent:dig_down()
+							print(plan)
+						end
+						fail = not plan
+						--fail = not agent:move_down() or not (agent:dig_down() and agent:move_down())
 					else
 						local dir = Direction:from_vector(current)
 						if dir == nil then 
@@ -253,7 +260,8 @@ BDI_Agent = Agent:new({
 		local gpsx, gpsy, gpsz = gps.locate()
 		if gpsx == nil then error("Unable to use gps location.") end
 		if math.floor(gpsx) ~= gpsx or math.floor(gpsy) ~= gpsy or math.floor(gpsz) ~= gpsz then
-			os.sleep()
+			print("GPS location unreliable, retrying...")
+			os.sleep(0.5)
 			return self:update_knowledge()
 		end
 		local gpsv = Vector:new({
@@ -310,13 +318,11 @@ BDI_Agent = Agent:new({
 				cost = 1;
 			}
 		elseif block.name == "minecraft:bedrock" then
-			print("Found bedrock at " .. x .. " " .. y .. " " .. z )
 			entry = {
 				name = block.name;
 				cost = -1;
 			}
 		elseif block.name == "minecraft:chest" then
-			print("Found chest at " .. x .. " " .. y .. " " .. z )
 			self.knowledge.chest_trigger = false
 			self.knowledge.mine_location = Position:new({
 				dir = self.knowledge.pos.dir:opposite();
