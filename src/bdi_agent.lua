@@ -48,9 +48,9 @@ BDI_Agent = Agent:new({
 			floor_blocks = nil;
 			
 			execute = function(self, agent, engine)
-				if agent.knowledge.pos.loc.y < 6 then
+				if agent.knowledge.pos.loc.y < 50 then
 					agent.knowledge.chest_trigger = true;
-					return "SUCCESS"
+					return "mine_shaft: shaft finished"
 				end
 				
 				if self.floor_blocks == nil then
@@ -61,8 +61,7 @@ BDI_Agent = Agent:new({
 					local zs = 1
 					if d.x < 0 then xs = -1 end
 					if d.z < 0 then zs = -1 end
-					--print(anchor:__tostring())
-					--print(agent.knowledge.mine_location.loc:__tostring())
+					
 					for posx = agent.knowledge.mine_location.loc.x, anchor.x, xs do
 						for posz = agent.knowledge.mine_location.loc.z, anchor.z, zs do
 							print(posx .. "/" .. posz)
@@ -72,15 +71,14 @@ BDI_Agent = Agent:new({
 				end
 				
 				if self.floor_blocks.size > 0 then
-					--print(self.floor_blocks:__tostring())
 					agent.knowledge.target = self.floor_blocks:pop_first()
-					return "CONTINUE"
+					return "mine_shaft: target set"
 				else
 					self.floor_blocks = nil
 					if agent:move_down() or (agent:dig_down() and agent:move_down()) then
-						return "CONTINUE"
+						return "mine_shaft: moved down successfully"
 					else
-						return "FAILURE"
+						return "mine_shaft: failed to move down"
 					end
 				end
 				
@@ -130,7 +128,7 @@ BDI_Agent = Agent:new({
 				
 				if agent.knowledge.pos.loc == agent.knowledge.target then
 					agent.knowledge.target = nil
-					return "SUCCESS";
+					return "travel: agent at target.";
 				end
 				
 				if agent.knowledge.target ~= nil and self.target ~= agent.knowledge.target then
@@ -140,7 +138,7 @@ BDI_Agent = Agent:new({
 					--print("Search complete.")
 					if self.path == nil then
 						agent.knowledge.target = nil
-						return "FAILURE"
+						return "travel: path not found."
 					end
 					self.path:remove(self.path:get(0))
 				end
@@ -164,13 +162,13 @@ BDI_Agent = Agent:new({
 					if fail then
 						self.path = nil
 						self.target = nil
-						return "FAILURE"
+						return "travel: failed to move."
 					else 
-						return "CONTINUE"
+						return "travel: move successful."
 					end
 				else
 					agent.knowledge.target = nil
-					return "FAILURE"
+					return "travel: unexpected path end."
 				end
 			end
 		};
