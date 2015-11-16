@@ -1,34 +1,45 @@
 require "class"
+require "string_extensions"
 
 Blua = Class:new{
 	
 	agent = nil;
 	
-	step_once = function(self)
+	step = function(self)
 		if self.agent.update_knowledge ~= nil then self.agent:update_knowledge() end
 		local d = self:check_desires();
 		if d == nil then return "NO_DESIRE" end
 		return self:set_intent(d.conditions);
 	end;
 	
-	step_through = function(self)
-		local result = nil;
-		while result ~= "EXIT" do
-			result = self:step_once();
-			--if result ~= "CONTINUE" then print("Step result: " .. result) end
-		end
-		return "EXIT"
-	end;
 	
 	set_intent = function(self, intent)
-		--print("Looking for plans for " .. intent)
+		local fitness = nil
+		local chosen = nil
 		for k, v in pairs(self.agent.plans) do
 			if self:evaluate_conditions(intent, v.goals) and self:evaluate_conditions(v.preconditions, self.agent.knowledge) then
-				--print("Executing " .. k)
-				return v:execute(self.agent, self);
+				local fval
+				if v.fitness == nil then
+					fval = nil
+				elseif type(v.fitness) == "number" then
+					fval = v.fitness
+				else
+					fval = v:fitness(self.agent)
+				end
+				
+				if fval == nil then
+					return v:execute(self.agent, self);
+				elseif fitness == nil then
+					chosen = v.execute
+					fitness = fval
+				elseif fval > fitness then
+					chosen = v.execute
+					fitness = fval
+				end
 			end
 		end
-		return "NO_MATCH";		
+		if chosen ~= nil then return chosen(self.agent, self) end
+		return "NO_PLAN";		
 	end;
 	
 	check_desires = function(self)
@@ -42,7 +53,7 @@ Blua = Class:new{
 			end
 		end
 		
-		if desire.priority == 0 then
+		if desire.priority <= 0 then
 			return nil
 		end
 		
@@ -67,25 +78,26 @@ Blua = Class:new{
 		};
 	end;
 	
-	parse_condition_string = function(self, string)
-		if type(string) == "table" then return string end;
-		return {
-			[string] = true;
-		};
+	parse_condition_string = function(self, s)
+		if s == nil then return {} end
+		if type(s) == "table" then return s end
+		if type(s) ~= "string" then error("Unexpected type on parse_condition_string") end
+		s = string.gsub(s, " ", "")
+		local t = {}
+		for i, x in ipairs(string.split(s, "&")) do
+			local not_check = string.gsub(x, "!", "")
+			if x ~= not_check then
+				t[not_check] = false
+			else
+				t[not_check] = true
+			end
+		end
+		return t
 	end;
 	
 	evaluate_conditions = function(self, required, current)
-		if required == nil then
-			required = {};
-		else
-			required = self:parse_condition_string(required);
-		end
-		
-		if current == nil then
-			current = {};
-		else
-			current = self:parse_condition_string(current);
-		end
+		required = self:parse_condition_string(required);
+		current = self:parse_condition_string(current);
 		
 		for k, v in pairs(required) do
 			if (v ~= current[k]) and (current[k] ~= nil or v) then
