@@ -150,6 +150,7 @@ BDI_Agent = Agent:new({
 					if current == Vector:new({y = 1}) then
 						fail = not agent:move_up() or not (agent:dig_up() and agent:move_up())
 					elseif current == Vector:new({y = -1}) then
+						print("check")
 						fail = not agent:move_down() or not (agent:dig_down() and agent:move_down())
 					else
 						local dir = Direction:from_vector(current)
