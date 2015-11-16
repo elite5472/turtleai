@@ -35,9 +35,6 @@ Dir["app/*.lua"].each do |f|
 	end
 	
 	newcode = combine(f, 'src')
-	$require_exceptions.each do |e|
-		newcode = "require \"#{e}\"\n" + newcode
-	end
 	
 	if code != newcode
 		File.write("bin/#{app}.lua", newcode)
