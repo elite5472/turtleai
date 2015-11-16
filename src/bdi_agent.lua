@@ -162,6 +162,7 @@ BDI_Agent = Agent:new({
 					if fail then
 						self.path = nil
 						self.target = nil
+						print(current:__tostring())
 						return "travel: failed to move."
 					else 
 						return "travel: move successful."
@@ -250,7 +251,7 @@ BDI_Agent = Agent:new({
 		--Step 1: Location
 		local gpsx, gpsy, gpsz = gps.locate()
 		if gpsx == nil then error("Unable to use gps location.") end
-		if math.floor(gpsx) ~= gpsx then
+		if math.floor(gpsx) ~= gpsx or math.floor(gpsy) ~= gpsy or math.floor(gpsz) ~= gpsz then
 			os.sleep()
 			return self:update_knowledge()
 		end
