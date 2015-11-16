@@ -97,7 +97,7 @@ BDI_Agent = Agent:new({
 			cost = function(a, b)
 				local x = BDI_Agent.knowledge.map:get(b.x, b.y, b.z)
 				if x == nil then
-					return 2
+					return 1
 				else
 					return x.cost
 				end
@@ -106,7 +106,7 @@ BDI_Agent = Agent:new({
 			estimate = function(a, b)
 				local d = b - a
 				local distance = math.abs(d.x) + math.abs(d.y) + math.abs(d.z)
-				return 2 * distance
+				return distance
 			end;
 	
 			expand = function(a)
