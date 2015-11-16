@@ -154,7 +154,7 @@ BDI_Agent = Agent:new({
 						print(plan)
 						if not plan then
 							plan = agent:dig_down()
-							plan = plan & agent:dig_down()
+							plan = plan and agent:dig_down()
 							print(plan)
 						end
 						fail = not plan
