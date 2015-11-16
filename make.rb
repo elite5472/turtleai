@@ -10,8 +10,8 @@ def combine(file, path, ignore = [])
 	out = ""
 	
 	dependencies.each do |d|
-		if !ignore.include?(d[0]) and !$require_exceptions.include?(d[0])
-			out = out + "\n" + combine("#{path}/#{d[0]}.lua", path, ignore)
+		if !ignore.include?(d[0])
+			out = out + "\n" + combine("#{path}/#{d[0]}.lua", path, ignore) unless !$require_exceptions.include?(d[0])
 			ignore << d[0]
 		end
 	end
